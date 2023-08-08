@@ -5,9 +5,13 @@
 
 const { Pool } = require("pg");
 
-const connection = new Pool();
+const connection = new Pool({
+  user: "harry",
+  host: "localhost",
+  database: "theme_parks",
+  password: "password",
+  port: 5432,
+});
 //testing push origin
 
 module.exports = connection;
-
-// asdasd

@@ -1,16 +1,13 @@
 const express = require("express");
 const app = express();
-const { healthCheckController } = require("./controllers/api.controllers");
+const controllers = require("./controllers/api.controllers");
+// app.use(express.json());
 
-app.listen(9090, () => {
-  console.log("Server is listening on port 9090!");
-});
+app.get("/api/healthcheck", controllers.healthCheckController);
 
-app.get("/api/healthcheck", (req, res) => {
-  healthCheckController(req, res);
-  console.log(healthCheckController(req, res));
-  res.end();
-});
+app.get("/api/parks", controllers.getParksController);
+
+app.get("/api/ride/:ride_id", controllers.getRideByIdController);
 
 app.use((err, req, res, next) => {
   console.log(err);
